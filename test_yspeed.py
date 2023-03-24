@@ -1,8 +1,14 @@
+"""
+Test file for the yspeed.py file
+"""
 import unittest
 from unittest.mock import patch, MagicMock
 from yspeed import Yspeed
 
 class TestYourClass(unittest.TestCase):
+    """ 
+    Test class for the Yspeed class
+    """
     def setUp(self):
         """ 
         Setup the test class
