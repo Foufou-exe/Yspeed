@@ -1,7 +1,5 @@
 import unittest
 from unittest.mock import patch, MagicMock
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
 from yspeed import yspeed
 
 class TestYourClass(unittest.TestCase):
