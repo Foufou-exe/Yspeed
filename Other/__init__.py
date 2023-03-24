@@ -1,1 +1,0 @@
-from .other import __author__, __github__
