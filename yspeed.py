@@ -10,7 +10,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
-class yspeed:
+class Yspeed:
     """
     A class that provides methods to retrieve information about the user's,
     Internet connection speed and IP address.
@@ -79,7 +79,6 @@ class yspeed:
         server = driver.find_element(By.CLASS_NAME, 'name').text
         driver.quit()
         return {"fournisseur": fournisseur, "Serveur": server}
-    
     def get_ip_info(self):
         """
         Retrieves information about the user's public IP address,
@@ -99,7 +98,6 @@ class yspeed:
         country = data['country']
         operator = data['org']
         return {"ip":ip_public,"city":city,"region":region,"country":country,"operator":operator}
-
     def get_speedtest(self):
         """
         Retrieves and returns the results of 
@@ -134,18 +132,16 @@ class yspeed:
             By.CLASS_NAME, 'result-data-value.ping-speed').text
         driver.quit()
         return {"download": download_speed, "upload": upload_speed, "ping": ping_speed, }
-    
     def _extracted_from_get_speedtest_10(self):
         result = self._extracted_from_speedtest_10()
-        go_button = result.find_element(By.ID, 'onetrust-accept-btn-handler')
+        go_button = result.find_element(By.ID,'onetrust-accept-btn-handler')
         go_button.click()
         return result
-    
     def _extracted_from_speedtest_10(self):
         """
-        This private method (_extracted_from_speedtest_10) initializes 
-        a web browser using Selenium and loads the Speedtest site (https://www.speedtest.net/).
-        This method is used by the 'ipinfo' and 'speedtest' 
+        This private method (_extracted_from_speedtest_10) initializes
+        a web browser using Selenium and loads the Speedtest site(https://www.speedtest.net/).
+        This method is used by the 'ipinfo' and 'speedtest'
         methods to automate interactions with the web site.
         The main steps of this method are as follows:
         Retrieve the browser name from the command line arguments,
@@ -162,11 +158,10 @@ class yspeed:
         result.get("https://www.speedtest.net/")
         time.sleep(5)
         return result
-    
     def get_webdriver(self, browser):
         """
         This method (get_webdriver) is used to initialize and
-        return an instance of Selenium webdriver based 
+        return an instance of Selenium webdriver based
         on the browser specified in argument.
         It supports Chrome, Firefox and Edge browsers
         The main steps of this method are as follows:
@@ -197,9 +192,8 @@ class yspeed:
             options.add_argument("--log-level=3")
             return webdriver.Edge(options=options)
         raise ValueError("Browser not supported")
-
 if __name__ == '__main__':
-    speedtest = yspeed()
+    speedtest = Yspeed()
     print(speedtest.get_ip_info())
     print(speedtest.get_speedtest())
     print(speedtest.best_serveur())

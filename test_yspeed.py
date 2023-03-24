@@ -1,12 +1,18 @@
 import unittest
 from unittest.mock import patch, MagicMock
-from yspeed import yspeed
+from yspeed import Yspeed
 
 class TestYourClass(unittest.TestCase):
     def setUp(self):
-        self.yspeed = yspeed()
+        """ 
+        Setup the test class
+        """
+        self.yspeed = Yspeed()
 
     def test_best_serveur(self):
+        """
+        Test the best_serveur method
+        """
         # Mock the _extracted_from_get_speedtest_10 method to return a desired output
         with patch.object(self.yspeed, '_extracted_from_get_speedtest_10') as mock_extracted:
             mock_driver = MagicMock()
@@ -19,6 +25,9 @@ class TestYourClass(unittest.TestCase):
             self.assertIn("Serveur", result)
 
     def test_get_ip_info(self):
+        """
+        Test the get_ip_info method
+        """
         with patch('requests.get') as mock_get:
             mock_get.return_value.json.return_value = {
                 'ip': '1.2.3.4',
