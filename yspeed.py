@@ -1,3 +1,6 @@
+"""Docstring for module Yspeed.
+"""
+
 import sys
 import time
 import requests
@@ -9,48 +12,67 @@ from selenium.webdriver.support import expected_conditions as EC
 
 class Yspeed:
     """
-    A class that provides methods to retrieve information about the user's Internet connection speed and IP address.
+    A class that provides methods to retrieve information about the user's,
+    Internet connection speed and IP address.
     Methods:
     best_serveur():
-        Retrieves and returns detailed IP address information using the https://www.speedtest.net/ service.
+    Retrieves and returns detailed IP address 
+    information using the https://www.speedtest.net/ service.
+    Information retrieved includes:
+    Provider: the name of the user's Internet Service Provider,
+    obtained using Selenium.
+    Server: the name of the server used for the connection,
+    also obtained using Selenium.
+    This method uses the 'requests' library to make an HTTP request and
+    the 'selenium' library to interact with
+    a web browser to obtain additional information,
+    including the provider name and server name.
+    get_ip_info():
+    Retrieves information about the user's public IP address,
+    such as city, region, country, and operator.
+    This function makes a request to the ipinfo.io 
+    service to get information about the user's public IP address.
+    The information retrieved includes IP address,
+    city, region, country, and operator.
+    Returns:
+    dict: A dictionary containing information about
+    the user's public IP address.
+    get_speedtest():
+    Retrieves and returns the results of an Internet 
+    connection speed test using the online service Speedtest.
+    The information retrieved includes:
+    Download Speed: The speed at which data is downloaded from 
+    the Internet to the user's computer.
+    Upload speed: the speed at which data is sent 
+    from the user's computer to the Internet.
+    Ping: the latency of the connection, measured in milliseconds.
+    This method uses the 'selenium' library to interact 
+    with a web browser and automate the speed test on the Speedtest site.
+    It waits for the test to finish, extracts the results and 
+    closes the browser before returning the data.
+    _extracted_from_get_speedtest_10():
+    A private method that initializes a web browser using Selenium and 
+    loads the Speedtest site (https://www.speedtest.net/).
+    This method is used by the 'ipinfo' and 'speedtest' methods
+    to automate interactions with the web site.
+    get_webdriver(browser):
+    This method is used to initialize and return an instance of 
+    Selenium webdriver based on the browser specified in argument.
+    It supports Chrome, Firefox and Edge browsers.
+    """
+    def best_serveur(self):
+        """
+        Retrieves and returns detailed IP address information 
+        using the https://www.speedtest.net/ service.
         Information retrieved includes:
         Provider: the name of the user's Internet Service Provider,
         obtained using Selenium.
         Server: the name of the server used for the connection,
         also obtained using Selenium.
-        This method uses the 'requests' library to make an HTTP request and
-        the 'selenium' library to interact with
+        This method uses the 'requests' library to make an HTTP request
+        and the 'selenium' library to interact with
         a web browser to obtain additional information,
         including the provider name and server name.
-    get_ip_info():
-        Retrieves information about the user's public IP address, such as city, region, country, and operator.
-        This function makes a request to the ipinfo.io service to get information about the user's public IP address.
-        The information retrieved includes IP address, city, region, country, and operator.
-        Returns:
-        dict: A dictionary containing information about the user's public IP address.
-    get_speedtest():
-        Retrieves and returns the results of an Internet connection speed test using the online service Speedtest.
-        The information retrieved includes:
-        Download Speed: The speed at which data is downloaded from the Internet to the user's computer.
-        Upload speed: the speed at which data is sent from the user's computer to the Internet.
-        Ping: the latency of the connection, measured in milliseconds.
-        This method uses the 'selenium' library to interact with a web browser and automate the speed test on the Speedtest site.
-        It waits for the test to finish, extracts the results and closes the browser before returning the data.
-    _extracted_from_get_speedtest_10():
-        A private method that initializes a web browser using Selenium and loads the Speedtest site (https://www.speedtest.net/).
-        This method is used by the 'ipinfo' and 'speedtest' methods to automate interactions with the web site.
-    get_webdriver(browser):
-        This method is used to initialize and return an instance of Selenium webdriver based on the browser specified in argument.
-        It supports Chrome, Firefox and Edge browsers.
-    """
-    def best_serveur(self):
-        """
-        Retrieves and returns detailed IP address information using the https://www.speedtest.net/ service.
-        Information retrieved includes:
-        Provider: the name of the user's Internet Service Provider,obtained using Selenium.
-        Server: the name of the server used for the connection,also obtained using Selenium.
-        This method uses the 'requests' library to make an HTTP request and the 'selenium' library to interact with
-        a web browser to obtain additional information, including the provider name and server name.
         """
         driver = self._extracted_from_get_speedtest_10()
         fournisseur = driver.find_element(By.CLASS_NAME, 'hostUrl').text
@@ -60,9 +82,12 @@ class Yspeed:
 
     def get_ip_info(self):
         """
-        Retrieves information about the user's public IP address, such as city, region, country, and operator.
-        This function makes a request to the ipinfo.io service to get information about the user's public IP address.
-        The information retrieved includes IP address, city, region, country, and operator.
+        Retrieves information about the user's public IP address,
+        such as city, region, country, and operator.
+        This function makes a request to the ipinfo.io service 
+        to get information about the user's public IP address.
+        The information retrieved includes IP address,
+        city, region, country, and operator.
         Returns:
         dict: A dictionary containing information about the user's public IP address.
         """
@@ -77,12 +102,17 @@ class Yspeed:
 
     def get_speedtest(self):
         """
-        Retrieves and returns the results of an Internet connection speed test using the online service Speedtest.
+        Retrieves and returns the results of 
+        an Internet connection speed test using the online service Speedtest.
         The information retrieved includes:
-        Download Speed: The speed at which data is downloaded from the Internet to the user's computer.
-        Upload speed: the speed at which data is sent from the user's computer to the Internet.
+        Download Speed: The speed at which data is
+        downloaded from the Internet to the user's computer.
+        Upload speed: the speed at which 
+        data is sent from the user's computer to the Internet.
         Ping: the latency of the connection, measured in milliseconds.
-        This method uses the 'selenium' library to interact with a web browser and automate the speed test on the Speedtest site. It waits for the test to finish, extracts the results and closes the browser before returning the data.
+        This method uses the 'selenium' library to interact with a web browser and
+        automate the speed test on the Speedtest site. It waits for the test to finish,
+        extracts the results and closes the browser before returning the data.
         """
         driver = self._extracted_from_get_speedtest_10()
         go_button = driver.find_element(By.CSS_SELECTOR, '.start-button a')
@@ -106,13 +136,19 @@ class Yspeed:
 
     def _extracted_from_speedtest_10(self):
         """
-        This private method (_extracted_from_speedtest_10) initializes a web browser using Selenium and loads the Speedtest site (https://www.speedtest.net/). This method is used by the 'ipinfo' and 'speedtest' methods to automate interactions with the web site.
+        This private method (_extracted_from_speedtest_10) initializes 
+        a web browser using Selenium and loads the Speedtest site (https://www.speedtest.net/).
+        This method is used by the 'ipinfo' and 'speedtest' 
+        methods to automate interactions with the web site.
         The main steps of this method are as follows:
-        Retrieve the browser name from the command line arguments, if available, otherwise use Chrome by default.
-        Get the instance of the webdriver corresponding to the chosen browser by calling the get_webdriver method.
+        Retrieve the browser name from the command line arguments,
+        if available, otherwise use Chrome by default.
+        Get the instance of the webdriver corresponding 
+        to the chosen browser by calling the get_webdriver method.
         Load the Speedtest site (https://www.speedtest.net/) using the webdriver.
         Wait 5 seconds to allow the site to load correctly.
-        The method returns the instance of the webdriver initialized and ready to interact with the Speedtest site.
+        The method returns the instance of the webdriver initialized and
+        ready to interact with the Speedtest site.
         """
         browser = sys.argv[1] if len(sys.argv) > 1 else "chrome"
         result = self.get_webdriver(browser)
@@ -122,12 +158,19 @@ class Yspeed:
 
     def get_webdriver(self, browser):
         """
-        This method (get_webdriver) is used to initialize and return an instance of Selenium webdriver based on the browser specified in argument. It supports Chrome, Firefox and Edge browsers
+        This method (get_webdriver) is used to initialize and
+        return an instance of Selenium webdriver based 
+        on the browser specified in argument.
+        It supports Chrome, Firefox and Edge browsers
         The main steps of this method are as follows:
         Check which browser has been specified as an argument.
-        Configure the webdriver options for the chosen browser, including enabling headless mode and disabling some console message levels.
-        Return the instance of the webdriver configured for the chosen browser.
-        If the browser specified in the argument is not supported, the method will throw a ValueError exception.    
+        Configure the webdriver options for the chosen browser,
+        including enabling headless mode and
+        disabling some console message levels.
+        Return the instance of the webdriver configured for
+        the chosen browser.
+        If the browser specified in the argument is not supported,
+        the method will throw a ValueError exception.    
         """
         if browser.lower() == "chrome":
             options = webdriver.ChromeOptions()
