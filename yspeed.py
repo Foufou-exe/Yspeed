@@ -162,7 +162,7 @@ class Yspeed:
         The method returns the instance of the webdriver initialized and
         ready to interact with the Speedtest site.
         """
-        browser = sys.argv[1] if len(sys.argv) > 1 else "chrome"
+        browser = sys.argv[1] if len(sys.argv) > 1 else "chrome" or "firefox" or "edge"
         result = self.get_webdriver(browser)
         result.get("https://www.speedtest.net/")
         time.sleep(5)

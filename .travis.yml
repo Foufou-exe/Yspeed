@@ -9,12 +9,10 @@ dist: focal
 services:
   - xvfb
 addons:
-  chrome: stable
   firefox: latest
   apt:
     packages:
-      - chromium-chromedriver
-      - firefox-geckodriver
+      - firefox
 cache: pip
 install:
   - pip install -r requirements.txt
