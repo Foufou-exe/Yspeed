@@ -228,6 +228,7 @@ class Yspeed:
             options = webdriver.ChromeOptions()
             options.add_argument("--headless")
             options.add_argument("--log-level=3")
+            options.add_argument("--disable-dev-shm-usage")
             options.add_experimental_option(
                 'excludeSwitches', ['enable-logging'])
             return webdriver.Chrome(options=options)
