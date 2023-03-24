@@ -9,10 +9,15 @@ dist: focal
 services:
   - xvfb
 addons:
-  firefox: latest
-  apt:
-    packages:
-      - firefox
+  chrome: stable
+
+before_install:
+  - CHROME_VERSION=$(google-chrome --version | grep -oE "[0-9]+\.[0-9]+\.[0-9]+")
+  - CHROMEDRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION")
+  - curl -s -O "https://chromedriver.storage.googleapis.com/${CHROMEDRIVER_VERSION}/chromedriver_linux64.zip"
+  - unzip chromedriver_linux64.zip -d ~/bin
+  - export PATH=$PATH:~/bin
+  
 cache: pip
 install:
   - pip install -r requirements.txt
