@@ -204,7 +204,7 @@ class TimeElapsedColumnWithLabel(TimeElapsedColumn):
         elapsed = task.finished_time if task.finished else task.elapsed
         return Text("Time: {:.1f}s".format(elapsed))
     
-def gather_network_info(speedtest: Yspeed, progress: Progress) -> dict[str, str]:
+def gather_network_info(speedtest: Yspeed, progress: Progress) -> dict:
     """ This function (gather_network_info) gathers the network information"""
     with progress:
         task1 = progress.add_task("Getting IP info...",title="[cyan]Getting IP info...", total=1)
@@ -222,7 +222,7 @@ def gather_network_info(speedtest: Yspeed, progress: Progress) -> dict[str, str]
             **speed,
         }
     
-def print_network_info(console: Console, info: dict[str, str]):
+def print_network_info(console: Console, info: dict):
     """ 
     This function (print_network_info) prints the network information
     """

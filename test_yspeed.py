@@ -4,7 +4,7 @@ Test file for the yspeed.py file
 import unittest
 from unittest.mock import Mock, patch, MagicMock
 from contextlib import contextmanager
-from yspeed import Yspeed, gather_network_info, print_network_info, clear_screen
+from yspeed import Yspeed, gather_network_info, print_network_info
 
 @contextmanager
 def progress_context_manager():
