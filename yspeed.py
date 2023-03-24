@@ -60,6 +60,7 @@ class Yspeed:
     Selenium webdriver based on the browser specified in argument.
     It supports Chrome, Firefox and Edge browsers.
     """
+
     def best_serveur(self):
         """
         Retrieves and returns detailed IP address information 
@@ -98,7 +99,7 @@ class Yspeed:
         region = data['region']
         country = data['country']
         operator = data['org']
-        return {"ip": ip_public, "city": city, "region":  region, "country": country, "operator": operator}
+        return {"ip": ip_public, "city": city, "region": region, "country": country, "operator": operator}
 
     def get_speedtest(self):
         """
@@ -119,12 +120,19 @@ class Yspeed:
         go_button.click()
         time.sleep(45)
         wait = WebDriverWait(driver, 10)
-        wait.until(EC.visibility_of_element_located((By.CLASS_NAME, 'result-data-large.number.result-data-value.download-speed')))
-        wait.until(EC.visibility_of_element_located((By.CLASS_NAME, 'result-data-large.number.result-data-value.upload-speed')))
-        wait.until(EC.visibility_of_element_located((By.CLASS_NAME, 'result-data-value.ping-speed')))
-        download_speed = driver.find_element(By.CLASS_NAME, 'result-data-large.number.result-data-value.download-speed').text
-        upload_speed = driver.find_element(By.CLASS_NAME, 'result-data-large.number.result-data-value.upload-speed').text
-        ping_speed = driver.find_element(By.CLASS_NAME, 'result-data-value.ping-speed').text
+        wait.until(EC.visibility_of_element_located(
+            (By.CLASS_NAME, 'result-data-large.number.result-data-value.download-speed')
+        ))
+        wait.until(EC.visibility_of_element_located(
+            (By.CLASS_NAME, 'result-data-large.number.result-data-value.upload-speed')))
+        wait.until(EC.visibility_of_element_located(
+            (By.CLASS_NAME, 'result-data-value.ping-speed')))
+        download_speed = driver.find_element(
+            By.CLASS_NAME, 'result-data-large.number.result-data-value.download-speed').text
+        upload_speed = driver.find_element(
+            By.CLASS_NAME, 'result-data-large.number.result-data-value.upload-speed').text
+        ping_speed = driver.find_element(
+            By.CLASS_NAME, 'result-data-value.ping-speed').text
         driver.quit()
         return {"download": download_speed, "upload": upload_speed, "ping": ping_speed, }
 
