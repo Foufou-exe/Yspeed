@@ -5,6 +5,7 @@ import sys
 import time
 import requests
 import platform
+import shutil
 import os
 from rich.console import Console
 from rich.text import Text
@@ -146,6 +147,46 @@ class Yspeed:
         go_button.click()
         return result
     
+    
+    def define_brower(self):
+        system = platform.system().lower()
+        
+        if system == "windows":
+            browser_executables = {
+                "chrome": "chrome.exe",
+                "firefox": "firefox.exe",
+                "edge": "msedge.exe"
+            }
+            possible_paths = [
+                os.path.join(os.environ["ProgramFiles"], "Google", "Chrome", "Application"),
+                os.path.join(os.environ["ProgramFiles(x86)"], "Google", "Chrome", "Application"),
+                os.path.join(os.environ["ProgramFiles"], "Mozilla Firefox"),
+                os.path.join(os.environ["ProgramFiles(x86)"], "Mozilla Firefox"),
+                os.path.join(os.environ["ProgramFiles"], "Microsoft", "Edge", "Application"),
+                os.path.join(os.environ["ProgramFiles(x86)"], "Microsoft", "Edge", "Application"),
+            ]
+        elif system == "linux":
+            browser_executables = {
+                "chrome": "google-chrome",
+                "firefox": "firefox",
+                "edge": "microsoft-edge"
+            }
+            possible_paths = [
+                "/usr/bin",
+                "/usr/local/bin",
+                "/opt/google/chrome",
+                "/opt/microsoft/msedge",
+            ]
+        else:
+            raise NotImplementedError(f"Platform '{system}' not supported")
+
+        for path in possible_paths:
+            for browser, executable in browser_executables.items():
+                if os.path.isfile(os.path.join(path, executable)):
+                    return browser
+
+        return None
+    
     def _extracted_from_speedtest_10(self):
         """
         This private method (_extracted_from_speedtest_10) initializes
@@ -162,8 +203,8 @@ class Yspeed:
         The method returns the instance of the webdriver initialized and
         ready to interact with the Speedtest site.
         """
-        browser = sys.argv[1] if len(sys.argv) > 1 else "chrome" or "firefox" or "edge"
-        result = self.get_webdriver(browser)
+        
+        result = self.get_webdriver(self.define_brower())
         result.get("https://www.speedtest.net/")
         time.sleep(5)
         return result
