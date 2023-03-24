@@ -25,4 +25,10 @@ jobs:
         pip install pylint
     - name: Analysing the code with pylint
       run: |
-        pylint $(git ls-files '*.py')
+        note=$(pylint --score=y $(git ls-files '*.py') | grep -o -P '(?<=Your code has been rated at )\d+(\.\d+)?(?=/10)')
+        if [ $(echo "$note >= 5" | bc -l) -eq 1 ]; then
+          pylint --exit-zero $(git ls-files '*.py')
+        else
+          echo "La note de code est inférieure à 5/10. La sortie
+          exit 1
+        fi
