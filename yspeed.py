@@ -99,7 +99,7 @@ class Yspeed:
         region = data['region']
         country = data['country']
         operator = data['org']
-        return {"ip": ip_public, "city": city, "region": region, "country": country, "operator": operator}
+        return {"ip":ip_public,"city":city,"region":region,"country":country,"operator":operator}
 
     def get_speedtest(self):
         """
