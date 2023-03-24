@@ -7,8 +7,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
-
-
 class Yspeed:
 
     def bestserveur(self):
@@ -110,7 +108,7 @@ class Yspeed:
 
         time.sleep(45)
         
-        wait = WebDriverWait(driver, 5)
+        wait = WebDriverWait(driver, 10)
         wait.until(EC.visibility_of_element_located((By.CLASS_NAME, 'result-data-large.number.result-data-value.download-speed')))
         wait.until(EC.visibility_of_element_located((By.CLASS_NAME, 'result-data-large.number.result-data-value.upload-speed')))
         wait.until(EC.visibility_of_element_located((By.CLASS_NAME, 'result-data-value.ping-speed')))
@@ -210,5 +208,7 @@ class Yspeed:
         
     
 if __name__ == '__main__':
-    y = Yspeed()
-    print(y.bestserveur())
+    speedtest = Yspeed()
+    print(speedtest.speedtest())
+    print(speedtest.ipinfo())
+    print(speedtest.best_server())
