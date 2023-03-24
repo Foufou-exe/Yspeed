@@ -29,6 +29,6 @@ jobs:
         if [ $(echo "$note >= 5" | bc -l) -eq 1 ]; then
           pylint --exit-zero $(git ls-files '*.py')
         else
-          echo "La note de code est inférieure à 5/10. La sortie
+          echo "La note de code est inférieure à 5/10. La sortie de code est générée."
           exit 1
         fi

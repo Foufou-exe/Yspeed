@@ -84,6 +84,7 @@ class Yspeed:
         server = driver.find_element(By.CLASS_NAME, 'name').text
         driver.quit()
         return {"fournisseur": fournisseur, "Serveur": server}
+    
     def get_ip_info(self):
         """
         Retrieves information about the user's public IP address,
@@ -103,6 +104,7 @@ class Yspeed:
         country = data['country']
         operator = data['org']
         return {"ip":ip_public,"city":city,"region":region,"country":country,"operator":operator}
+    
     def get_speedtest(self):
         """
         Retrieves and returns the results of 
@@ -137,11 +139,13 @@ class Yspeed:
             By.CLASS_NAME, 'result-data-value.ping-speed').text
         driver.quit()
         return {"download": download_speed, "upload": upload_speed, "ping": ping_speed, }
+    
     def _extracted_from_get_speedtest_10(self):
         result = self._extracted_from_speedtest_10()
         go_button = result.find_element(By.ID,'onetrust-accept-btn-handler')
         go_button.click()
         return result
+    
     def _extracted_from_speedtest_10(self):
         """
         This private method (_extracted_from_speedtest_10) initializes
