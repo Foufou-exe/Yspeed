@@ -3,4 +3,3 @@
 requests
 selenium
 rich
-platform
