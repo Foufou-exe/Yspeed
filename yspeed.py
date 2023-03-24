@@ -142,6 +142,9 @@ class Yspeed:
         return {"download": download_speed, "upload": upload_speed, "ping": ping_speed, }
     
     def _extracted_from_get_speedtest_10(self):
+        """ 
+        A private method that initializes a web browser using Selenium and loads the Speedtest site (https://www.speedtest.net/).
+        """
         result = self._extracted_from_speedtest_10()
         go_button = result.find_element(By.ID,'onetrust-accept-btn-handler')
         go_button.click()
@@ -149,6 +152,9 @@ class Yspeed:
     
     
     def define_brower(self):
+        """
+        This method is used to initialize and return an instance of Selenium webdriver based on the browser specified in argument.
+        """
         system = platform.system().lower()
         
         if system == "windows":
