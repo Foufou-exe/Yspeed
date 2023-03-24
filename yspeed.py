@@ -4,6 +4,11 @@
 import sys
 import time
 import requests
+import platform
+import os
+from rich.console import Console
+from rich.text import Text
+from rich.progress import Progress, BarColumn, TimeElapsedColumn, TextColumn
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -192,8 +197,93 @@ class Yspeed:
             options.add_argument("--log-level=3")
             return webdriver.Edge(options=options)
         raise ValueError("Browser not supported")
+
+class TimeElapsedColumnWithLabel(TimeElapsedColumn):
+    """A column that displays the time elapsed since the task started."""
+    def render(self, task) -> Text:
+        elapsed = task.finished_time if task.finished else task.elapsed
+        return Text("Time: {:.1f}s".format(elapsed))
+    
+def gather_network_info(speedtest: Yspeed, progress: Progress) -> dict[str, str]:
+    """ This function (gather_network_info) gathers the network information"""
+    with progress:
+        task1 = progress.add_task("Getting IP info...",title="[cyan]Getting IP info...", total=1)
+        info = speedtest.get_ip_info()
+        progress.update(task1, advance=1)
+        task2 = progress.add_task("Selecting best server...",title="[cyan]Selecting best server...", total=1)
+        best = speedtest.best_serveur()
+        progress.update(task2, advance=1)
+        task3 = progress.add_task("Performing speedtest...",title="[cyan]Performing speedtest...", total=1)
+        speed = speedtest.get_speedtest()
+        progress.update(task3, advance=1)
+        return {
+            **info,
+            **best,
+            **speed,
+        }
+    
+def print_network_info(console: Console, info: dict[str, str]):
+    """ 
+    This function (print_network_info) prints the network information
+    """
+    clear_screen()
+    console.print("Network Information", style="bold yellow", justify="center")
+    console.print("Operator: [bold green]{operator}[/bold green]".format(**info), style="blue", justify="center")
+    console.print("IP: [bold green]{ip}[/bold green]".format(**info), style="blue", justify="center")
+    console.print("\nLocalisation", style="bold yellow", justify="center")
+    console.print("City: [bold green]{city}[/bold green]".format(**info), style="blue", justify="center")
+    console.print("Region: [bold green]{region}[/bold green]".format(**info), style="blue", justify="center")
+    console.print("Country: [bold green]{country}[/bold green]".format(**info), style="blue", justify="center")
+    console.print("\nBest Server", style="bold yellow", justify="center")
+    console.print("Fournisseur: [bold green]{fournisseur}[/bold green]".format(**info), style="blue", justify="center")
+    console.print("Server: [bold green]{Serveur}[/bold green]".format(**info), style="blue", justify="center")
+    console.print("\nSpeedTest", style="bold yellow", justify="center")
+    console.print("Download: [bold green]{download}[/bold green]".format(**info), style="blue", justify="center")
+    console.print("Upload: [bold green]{upload}[/bold green]".format(**info), style="blue", justify="center")
+    console.print("Ping: [bold green]{ping}[/bold green]".format(**info), style="blue", justify="center")
+
+def author(console: Console):
+    """
+    This function (author) prints the author's name
+    """
+    version = "0.1.0"
+    console.print("Author: Foufou-exe", style="grey35", justify="center")
+    console.print("Github: https://github.com/Foufou-exe", style="grey35", justify="center")
+    console.print(f"Version Yspeed: {version}", style="grey35", justify="center")
+
+def clear_screen():
+    """
+        Efface l'écran
+    """
+    system_name = platform.system()
+    if system_name == "Windows":
+        # do something specific for Windows
+        os.system('cls')
+    elif system_name == "Linux":
+        # do something specific for Linux
+        os.system('clear')
+    else:
+        print(f"Le systeme ne supporte pas : {system_name}")
+        
+def main():
+    """
+    This function (main) is the main entry point of the script.
+    """
+    try:
+        console = Console()
+        speedtest = Yspeed()
+        console.print("Welcome to Yspeed!", style="bold yellow", justify="center")
+        author(console)
+        
+        console.print("\n\nGathering network information...", style="bold yellow", justify="center")
+        with  Progress(TextColumn("{task.fields[title]}"),BarColumn(),TimeElapsedColumnWithLabel(),console=console) as progress:
+            info = gather_network_info(speedtest, progress)
+        print_network_info(console, info)
+        console.print("\nGoodbye!", style="bold red", justify="center")
+    except KeyboardInterrupt:
+        console.print("Cancel...", style="bold red", justify="center")
+        console.print("Goodbye!", style="bold red", justify="center")
+        sys.exit(0)
+        
 if __name__ == '__main__':
-    speedtest = Yspeed()
-    print(speedtest.get_ip_info())
-    print(speedtest.get_speedtest())
-    print(speedtest.best_serveur())
+    main()

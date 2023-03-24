@@ -1,0 +1,22 @@
+language: python
+python:
+  - "3.7"
+  - "3.8"
+  - "3.9"
+  - "3.10"
+  - "3.11"
+dist: focal
+services:
+  - xvfb
+addons:
+  chrome: stable
+  firefox: latest
+  apt:
+    packages:
+      - chromium-chromedriver
+      - firefox-geckodriver
+cache: pip
+install:
+  - pip install -r requirements.txt
+script:
+  - python yspeed.py
