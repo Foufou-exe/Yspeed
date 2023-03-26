@@ -32,8 +32,8 @@ cd Yspeed
 
 Install the dependencies
 
-cmd
-pip isntall -r requirements.txt
+```cmd
+pip install -r requirements.txt
 ```
 
 Run the Yspeed.py script
@@ -70,4 +70,3 @@ Feel free to contribute to this project by opening issues or submitting pull req
 ## License
 
 YSpeed is distributed under the MIT license. See the ``LICENSE`` file for more information.
-

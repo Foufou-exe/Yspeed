@@ -213,6 +213,7 @@ class Yspeed:
         result.get("https://www.speedtest.net/")
         time.sleep(5)
         return result
+    
     def get_webdriver(self, browser):
         """
         This method (get_webdriver) is used to initialize and
