@@ -5,7 +5,6 @@ import sys
 import time
 import requests
 import platform
-import shutil
 import os
 from rich.console import Console
 from rich.text import Text
@@ -146,8 +145,8 @@ class Yspeed:
         A private method that initializes a web browser using Selenium and loads the Speedtest site (https://www.speedtest.net/).
         """
         result = self._extracted_from_speedtest_10()
-        go_button = result.find_element(By.ID,'onetrust-accept-btn-handler')
-        go_button.click()
+        accept_rpgd = result.find_element(By.ID,'onetrust-accept-btn-handler')
+        accept_rpgd.click()
         return result
     
     
@@ -235,7 +234,7 @@ class Yspeed:
             options.add_argument("--no-sandbox")
             options.add_argument("--headless") 
             options.add_argument("--log-level=3")
-            options.add_argument("--disable-dev-shm-usage")
+            # options.add_argument("--disable-dev-shm-usage")
             options.add_experimental_option(
                 'excludeSwitches', ['enable-logging'])
             return webdriver.Chrome(options=options)
