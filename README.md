@@ -84,7 +84,7 @@ Make sure you also have a Selenium-compatible driver installed for your preferre
   <summary> 🎬 Yspeed </summary>
   <hr>
   <video width="1280" height="720" controls>
-  <source src="https://github.com/Foufou-exe/Yspeed/blob/2666917267f7befecf530d1f1a4ef2fa66713443/.github/images/WindowsTerminal_UnmeakEUma.mov" type="video/mp4">
+    <source src="https://github.com/Foufou-exe/Yspeed/blob/2666917267f7befecf530d1f1a4ef2fa66713443/.github/images/WindowsTerminal_UnmeakEUma.mov" type="video/mp4">
   </video>
   
 </details>
