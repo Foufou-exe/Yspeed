@@ -408,15 +408,16 @@ def _version():
     return "0.1.1"
 
 
-def author(console: Console, version: _version):
+def author():
     """
     This function (author) prints the author's name
     """
+    console = Console()
     console.print("Author: Foufou-exe", style="grey35", justify="center")
     console.print(
         "Github: https://github.com/Foufou-exe", style="grey35", justify="center"
     )
-    console.print(f"Version Yspeed: {version}", style="grey35", justify="center")
+    console.print(f"Version Yspeed: {_version()}", style="grey35", justify="center")
 
 
 def clear_screen():
@@ -442,7 +443,7 @@ def main():
         console = Console()
         speedtest = Yspeed()
         console.print("Welcome to Yspeed!", style="bold yellow", justify="center")
-        author(console)
+        author()
 
         console.print(
             "\n\nGathering network information...",
@@ -460,7 +461,7 @@ def main():
         time.sleep(10)
         clear_screen()
         console.print("\nGoodbye!", style="bold red", justify="center")
-    except KeyboardInterrupt:
+    except (KeyboardInterrupt, SystemExit):
         clear_screen()
         console.print("Cancel...", style="bold red", justify="center")
         console.print("Goodbye!", style="bold red", justify="center")
