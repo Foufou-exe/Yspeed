@@ -50,7 +50,7 @@ class Yspeed:
              It supports Chrome, Firefox and Edge browsers.
     """
 
-    def best_server(self):
+    def best_server(self) -> dict[str, str]:
         """
         Retrieves and returns detailed IP address information using the https://www.speedtest.net/ service.
         Information retrieved includes:
@@ -71,7 +71,7 @@ class Yspeed:
 
         return {"provider": provider, "Serveur": server}
 
-    def get_ip_info(self):
+    def get_ip_info(self) -> dict[str, str]:
         """
         Retrieves information about the user's public IP address,such as city, region, country, and operator.
         This function makes a request to the ipinfo.io service to get information about the user's public IP address.
@@ -94,7 +94,7 @@ class Yspeed:
             "operator": operator,
         }
 
-    def get_speedtest(self):
+    def get_speedtest(self) -> dict[str, str]:
         """
         Retrieves and returns the results of an Internet connection speed test using the online service Speedtest.
         The information retrieved includes:
@@ -146,7 +146,7 @@ class Yspeed:
             "ping": ping_speed,
         }
 
-    def _extracted_from_get_speedtest(self):
+    def _extracted_from_get_speedtest(self) -> object:
         """
         A private method that initializes a web browser using Selenium and loads the Speedtest site (https://www.speedtest.net/).
         """
@@ -189,7 +189,7 @@ class Yspeed:
                 "ping": "N/A",
             }
 
-    def display_results(self, speedtest: dict):
+    def display_results(self, speedtest: dict) -> None:
         """Displays the results of the speedtest in the console."""
 
         bold_yellow = "bold yellow"
@@ -212,7 +212,7 @@ class Yspeed:
         )
         console.print("Thanks for Speedtest", style="bold red", justify="center")
 
-    def define_brower(self):
+    def define_brower(self) -> object:
         """
         Initialize and return an instance of Selenium webdriver based on the browser specified in argument.
         """
@@ -262,7 +262,7 @@ class Yspeed:
 
         return None
 
-    def _extracted_from_speedtest(self):
+    def _extracted_from_speedtest(self) -> object:
         """
         This private method (_extracted_from_speedtest) initializes a web browser using Selenium and loads the Speedtest site(https://www.speedtest.net/).
         This method is used by the `ipinfo()` and `speedtest()` methods to automate interactions with the web site.
@@ -279,7 +279,7 @@ class Yspeed:
         time.sleep(5)
         return result
 
-    def get_webdriver(self, browser: str):
+    def get_webdriver(self, browser: str) -> object:
         """
         This method (get_webdriver) is used to initialize and return an instance of Selenium webdriver based on the browser specified in argument.
         It supports Chrome, Firefox and Edge browsers The main steps of this method are as follows:
@@ -342,7 +342,7 @@ def gather_network_info(speedtest: Yspeed, progress: Progress) -> dict:
         }
 
 
-def print_network_info(console: Console, info: dict):
+def print_network_info(console: Console, info: dict) -> None:
     """
     This function (print_network_info) prints the network information
     """
@@ -404,11 +404,11 @@ def print_network_info(console: Console, info: dict):
     )
 
 
-def _version():
+def _version() -> str:
     return "0.1.1"
 
 
-def author():
+def author() -> None:
     """
     Prints the name of the script author and their contact information.
     """
@@ -420,7 +420,7 @@ def author():
     console.print(f"Version Yspeed: {_version()}", style="grey35", justify="center")
 
 
-def clear_screen():
+def clear_screen() -> None:
     """
     Clears the terminal screen based on the operating system.
     """
@@ -434,7 +434,7 @@ def clear_screen():
     else:
         print(f"Le systeme ne supporte pas : {system_name}")
 
-def question():
+def question() -> None:
     """
     Asks the user if they want to run a Speedtest again.
     If the user enters "y" or "yes" (case-insensitive), the `main()` function is called to run a Speedtest. 
@@ -450,7 +450,7 @@ def question():
         console.print("Goodbye!", style="bold red", justify="center")
         sys.exit(0)
 
-def main():
+def main() -> None:
     """
     This function (main) is the main entry point of the script.
     """
