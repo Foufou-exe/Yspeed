@@ -13,7 +13,8 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import NoSuchElementException
+from halo import Halo
 
 class Yspeed:
     """
@@ -81,11 +82,18 @@ class Yspeed:
         including the provider name and server name.
         """
         driver = self._extracted_from_get_speedtest_10()
+        wait = WebDriverWait(driver, 5)
+        wait.until(EC.visibility_of_element_located((By.CLASS_NAME, 'hostUrl')))
+        wait.until(EC.visibility_of_element_located((By.CLASS_NAME, 'name')))
+
         fournisseur = driver.find_element(By.CLASS_NAME, 'hostUrl').text
         server = driver.find_element(By.CLASS_NAME, 'name').text
+
         driver.quit()
+
         return {"fournisseur": fournisseur, "Serveur": server}
-    
+
+
     def get_ip_info(self):
         """
         Retrieves information about the user's public IP address,
@@ -140,44 +148,42 @@ class Yspeed:
             By.CLASS_NAME, 'result-data-value.ping-speed').text
         driver.quit()
         return {"download": download_speed, "upload": upload_speed, "ping": ping_speed, }
-    
+        
     def _extracted_from_get_speedtest_10(self):
         """ 
         A private method that initializes a web browser using Selenium and loads the Speedtest site (https://www.speedtest.net/).
         """
         result = self._extracted_from_speedtest_10()
         try:
-            accept_rpgd = WebDriverWait(result, 5).until(
-                EC.presence_of_element_located((By.ID, 'onetrust-accept-btn-handler')
-            ))
-            accept_rpgd.click()
-        except TimeoutException:
+            rgpd = result.find_element(By.ID, 'onetrust-accept-btn-handler')
+            rgpd.click()
+            return result
+        except NoSuchElementException:
             return result
             
     def run_speedtest(self):
         """returns a dictionary containing the results of the speedtest"""
-        speedtest = self.get_speedtest()
-        return {
-            **speedtest
-        }
+        total_iterations = 50
+        # Frames pour le spinner personnalisé
+        spinner_frames = ['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏']
+        # Utilisez Halo pour créer un spinner personnalisé
+        with Halo(spinner={'interval': 100, 'frames': spinner_frames}, text="Démarrage du Speedtest") as spinner:
+            for _ in range(total_iterations):
+                speedtest = self.get_speedtest()
+                return speedtest
+            spinner.succeed("Processus terminé.")
     
-    def display_results(self, console : Console()):
-        info = self.get_ip_info()
+    def display_results(console : Console(), speedtest : dict):
+        """displays the results of the speedtest in the console"""
+    
         bold_yellow = "bold yellow"
-        console.print("Network Information", style=bold_yellow, justify="center")
-        console.print("Operator: [bold green]{operator}[/bold green]".format(**info), style="blue", justify="center")
-        console.print("IP: [bold green]{ip}[/bold green]".format(**info), style="blue", justify="center")
-        console.print("\nLocalisation", style=bold_yellow, justify="center")
-        console.print("City: [bold green]{city}[/bold green]".format(**info), style="blue", justify="center")
-        console.print("Region: [bold green]{region}[/bold green]".format(**info), style="blue", justify="center")
-        console.print("Country: [bold green]{country}[/bold green]".format(**info), style="blue", justify="center")
-        console.print("\nBest Server", style=bold_yellow, justify="center")
-        console.print("Fournisseur: [bold green]{fournisseur}[/bold green]".format(**info), style="blue", justify="center")
-        console.print("Server: [bold green]{Serveur}[/bold green]".format(**info), style="blue", justify="center")
         console.print("\nSpeedTest", style=bold_yellow, justify="center")
-        console.print("Download: [bold green]{download}[/bold green]".format(**info), style="blue", justify="center")
-        console.print("Upload: [bold green]{upload}[/bold green]".format(**info), style="blue", justify="center")
-        console.print("Ping: [bold green]{ping}[/bold green]".format(**info), style="blue", justify="center")
+        console.print("Download: [bold green]{download}[/bold green]".format(**speedtest), style="blue", justify="center")
+        console.print("Upload: [bold green]{upload}[/bold green]".format(**speedtest), style="blue", justify="center")
+        console.print("Ping: [bold green]{ping}[/bold green]".format(**speedtest), style="blue", justify="center")
+        
+    
+        
         
     def define_brower(self):
         """
@@ -359,14 +365,20 @@ def main():
         author(console)
         
         console.print("\n\nGathering network information...", style="bold yellow", justify="center")
-        with  Progress(TextColumn("{task.fields[title]}"),BarColumn(),TimeElapsedColumnWithLabel(),console=console) as progress:
+        with Progress(TextColumn("{task.fields[title]}"),BarColumn(),TimeElapsedColumnWithLabel(),console=console) as progress:
             info = gather_network_info(speedtest, progress)
         print_network_info(console, info)
+        time.sleep(30)
+        clear_screen()
         console.print("\nGoodbye!", style="bold red", justify="center")
     except KeyboardInterrupt:
+        clear_screen()
         console.print("Cancel...", style="bold red", justify="center")
         console.print("Goodbye!", style="bold red", justify="center")
         sys.exit(0)
         
 if __name__ == '__main__':
-    main()
+    # main()
+    y = Yspeed()
+    # result = y.get_speedtest()
+    # y.display_results(result)
