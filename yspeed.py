@@ -167,20 +167,29 @@ class Yspeed:
         # Frames pour le spinner personnalisé
         spinner_frames = ['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏']
         # Utilisez Halo pour créer un spinner personnalisé
-        with Halo(spinner={'interval': 100, 'frames': spinner_frames}, text="Démarrage du Speedtest") as spinner:
-            for _ in range(total_iterations):
-                speedtest = self.get_speedtest()
-                return speedtest
-            spinner.succeed("Processus terminé.")
+        try:
+            with Halo(spinner={'interval': 100, 'frames': spinner_frames}, text="Démarrage du Speedtest",color="red",text_color="yellow").start() as spinner:
+                time.sleep(1)
+                for _ in range(total_iterations):
+                    spinner.text = "Progression..."
+                    speedtest = self.get_speedtest()
+                    spinner.stop_and_persist(text="Speedtest terminé", symbol="✅")
+                    return speedtest
+        except (KeyboardInterrupt, SystemExit):
+            spinner.stop_and_persist(text="Speedtest annulé", symbol="❌")
+            return {"download": "N/A", "upload": "N/A", "ping": "N/A", }
+            
     
-    def display_results(console : Console(), speedtest : dict):
+    def display_results(self, speedtest: dict):
         """displays the results of the speedtest in the console"""
     
         bold_yellow = "bold yellow"
+        console = Console()
         console.print("\nSpeedTest", style=bold_yellow, justify="center")
         console.print("Download: [bold green]{download}[/bold green]".format(**speedtest), style="blue", justify="center")
         console.print("Upload: [bold green]{upload}[/bold green]".format(**speedtest), style="blue", justify="center")
         console.print("Ping: [bold green]{ping}[/bold green]".format(**speedtest), style="blue", justify="center")
+        console.print("Thanks for Speedtest", style="bold red", justify="center")
         
     
         
@@ -380,5 +389,5 @@ def main():
 if __name__ == '__main__':
     # main()
     y = Yspeed()
-    # result = y.get_speedtest()
-    # y.display_results(result)
+    result = y.run_speedtest()
+    y.display_results(result)

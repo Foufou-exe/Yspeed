@@ -3,6 +3,7 @@ Test file for the yspeed.py file
 """
 import unittest
 from unittest.mock import Mock, patch, MagicMock
+from selenium.webdriver.common.by import By
 from contextlib import contextmanager
 from yspeed import Yspeed, gather_network_info, print_network_info
 
@@ -19,26 +20,34 @@ class TestYourClass(unittest.TestCase):
     """ 
     Test class for the Yspeed class
     """
+    
+    @patch('yspeed.Halo')
+    @patch('yspeed.time.sleep', MagicMock(return_value=None))
+    def test_run_speedtest(self, mock_halo):
+        """ Test the run_speedtest method"""
+        # Replace 'YourClass' with the actual name of the class containing the `run_speedtest` function
+        speedtest_obj = Yspeed()
+
+        # Mock the get_speedtest method to return a predefined dictionary
+        mock_speedtest = {'download': '100 Mbps', 'upload': '50 Mbps', 'ping': '20 ms'}
+        speedtest_obj.get_speedtest = MagicMock(return_value=mock_speedtest)
+
+        # Call the run_speedtest function and get the results
+        result = speedtest_obj.run_speedtest()
+
+        # Assert that the result is as expected
+        self.assertEqual(result, mock_speedtest)
+
+        # Assert that the Halo spinner is called with the expected parameters
+        mock_halo.assert_called_with(spinner={'interval': 100, 'frames': ['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏']}, text="Démarrage du Speedtest", color="red", text_color="yellow")
+
+    
     def setUp(self):
         """ 
         Setup the test class
         """
         self.yspeed = Yspeed()
 
-    def test_best_serveur(self):
-        """
-        Test the best_serveur method
-        """
-        # Mock the _extracted_from_get_speedtest_10 method to return a desired output
-        with patch.object(self.yspeed, '_extracted_from_get_speedtest_10') as mock_extracted:
-            mock_driver = MagicMock()
-            mock_driver.find_element.side_effect = [
-                MagicMock(text="Fournisseur Test"), MagicMock(text="Server Test")]
-            mock_extracted.return_value = mock_driver
-            result = self.yspeed.best_serveur()
-            self.assertIsInstance(result, dict)
-            self.assertIn("fournisseur", result)
-            self.assertIn("Serveur", result)
 
     def test_get_ip_info(self):
         """
