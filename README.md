@@ -54,6 +54,12 @@ result = ys.run_speedtest()
 ys.display_results(result)
 ```
 
+or use script yspeed.py
+
+```bash
+python yspeed.py
+```
+
 ## Dependencies
 
 YSpeed depends on the following libraries:
