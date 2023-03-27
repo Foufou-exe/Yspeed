@@ -17,7 +17,7 @@ setup(
     long_description=open("README.md", encoding="utf-8").read(),
     long_description_content_type="text/markdown",
     url="https://github.com/Foufou-exe/Yspeed",
-    py_modules=['yspeed'],
+    py_modules=["yspeed"],
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",
