@@ -22,7 +22,7 @@ class Yspeed:
     """
     A class that provides methods to retrieve information about the user's,Internet connection speed and IP address.
     Methods:
-        best_serveur():
+        best_server():
             Retrieves and returns detailed IP address information using the https://www.speedtest.net/ service.
             Information retrieved includes:
             Provider: the name of the user's Internet Service Provider,obtained using Selenium.
@@ -50,7 +50,7 @@ class Yspeed:
              It supports Chrome, Firefox and Edge browsers.
     """
 
-    def best_serveur(self):
+    def best_server(self):
         """
         Retrieves and returns detailed IP address information using the https://www.speedtest.net/ service.
         Information retrieved includes:
@@ -328,7 +328,7 @@ def gather_network_info(speedtest: Yspeed, progress: Progress) -> dict:
         task2 = progress.add_task(
             "Selecting best server...", title="[cyan]Selecting best server...", total=1
         )
-        best = speedtest.best_serveur()
+        best = speedtest.best_server()
         progress.update(task2, advance=1)
         task3 = progress.add_task(
             "Performing speedtest...", title="[cyan]Performing speedtest...", total=1
