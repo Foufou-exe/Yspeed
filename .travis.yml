@@ -8,10 +8,15 @@ python:
 dist: focal
 services:
   - xvfb
-addons:
-  chrome: stable
+
 
 before_install:
+  - apt-get install curl wget -y
+  - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+  - dpkg -i google-chrome-stable_current_amd64.deb
+  - apt-get install -f 
+
+after_install:
   - CHROME_VERSION=$(google-chrome --version | grep -oE "[0-9]+\.[0-9]+\.[0-9]+")
   - CHROMEDRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION")
   - curl -s -O "https://chromedriver.storage.googleapis.com/${CHROMEDRIVER_VERSION}/chromedriver_linux64.zip"
