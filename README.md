@@ -33,7 +33,7 @@ cd Yspeed
 Install the dependencies
 
 ```cmd
-pip isntall -r requirements.txt
+pip install -r requirements.txt
 ```
 
 Run the Yspeed.py script
