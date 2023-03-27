@@ -1,6 +1,10 @@
 ![logo](https://socialify.git.ci/Foufou-exe/Yspeed/image?description=1&descriptionEditable=Yspeed%20is%20a%20library%20that%20scrapes%20the%20Speedtest%20site&font=Jost&forks=1&issues=1&logo=https%3A%2F%2Fraw.githubusercontent.com%2FFoufou-exe%2FYspeed%2Fdev%2F.github%2Fimages%2Foffice.svg&name=1&owner=1&pulls=1&stargazers=1&theme=Dark)
 
+<div align="center">
+
 [![Build Status](https://app.travis-ci.com/Foufou-exe/Yspeed.svg?branch=main)](https://app.travis-ci.com/Foufou-exe/Yspeed)
+
+</div>
 
 YSpeed is a Python library that scrapes the Speedtest site using Selenium and displays the results with Rich. This library makes it easy to retrieve internet connection speed data (upload, download and latency) in an automated manner and display it elegantly using the Rich library.
 
@@ -74,7 +78,16 @@ Make sure you also have a Selenium-compatible driver installed for your preferre
 
 ## Use screen
 
-Script yspeed :
+
+
+<details>  
+  <summary> 🎬 Yspeed </summary>
+  <hr>
+
+
+
+  
+</details>
 
 ## Contribution
 
