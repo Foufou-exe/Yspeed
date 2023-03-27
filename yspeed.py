@@ -159,7 +159,7 @@ class Yspeed:
             return result
 
     def run_speedtest(self):
-        """returns a dictionary containing the results of the speedtest"""
+        """Returns a dictionary containing the results of the speedtest."""
         total_iterations = 50
         # Frames pour le spinner personnalisé
         spinner_frames = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"]
@@ -190,7 +190,7 @@ class Yspeed:
             }
 
     def display_results(self, speedtest: dict):
-        """displays the results of the speedtest in the console"""
+        """Displays the results of the speedtest in the console."""
 
         bold_yellow = "bold yellow"
         console = Console()
@@ -214,7 +214,7 @@ class Yspeed:
 
     def define_brower(self):
         """
-        This method is used to initialize and return an instance of Selenium webdriver based on the browser specified in argument.
+        Initialize and return an instance of Selenium webdriver based on the browser specified in argument.
         """
         system = platform.system().lower()
 
@@ -265,7 +265,7 @@ class Yspeed:
     def _extracted_from_speedtest(self):
         """
         This private method (_extracted_from_speedtest) initializes a web browser using Selenium and loads the Speedtest site(https://www.speedtest.net/).
-        This method is used by the 'ipinfo' and 'speedtest' methods to automate interactions with the web site.
+        This method is used by the `ipinfo()` and `speedtest()` methods to automate interactions with the web site.
         The main steps of this method are as follows:
             Retrieve the browser name from the command line arguments,if available, otherwise use Chrome by default.
             Get the instance of the webdriver corresponding to the chosen browser by calling the get_webdriver method.
@@ -318,7 +318,7 @@ class TimeElapsedColumnWithLabel(TimeElapsedColumn):
 
 
 def gather_network_info(speedtest: Yspeed, progress: Progress) -> dict:
-    """This function (gather_network_info) gathers the network information"""
+    """Gathers the network information of the user."""
     with progress:
         task1 = progress.add_task(
             "Getting IP info...", title="[cyan]Getting IP info...", total=1
@@ -410,7 +410,7 @@ def _version():
 
 def author():
     """
-    This function (author) prints the author's name
+    Prints the name of the script author and their contact information.
     """
     console = Console()
     console.print("Author: Foufou-exe", style="grey35", justify="center")
@@ -422,7 +422,7 @@ def author():
 
 def clear_screen():
     """
-    Efface l'écran
+    Clears the terminal screen based on the operating system.
     """
     system_name = platform.system()
     if system_name == "Windows":
@@ -435,6 +435,12 @@ def clear_screen():
         print(f"Le systeme ne supporte pas : {system_name}")
 
 def question():
+    """
+    Asks the user if they want to run a Speedtest again.
+    If the user enters "y" or "yes" (case-insensitive), the `main()` function is called to run a Speedtest. 
+    Otherwise, the screen is cleared and a goodbye message is printed in bold red text, 
+    and the script exits with a status code of 0.
+    """
     console = Console()
     repo = input("Do you want to do a Speedtest again ? (y/n) : ")
     if repo in ["y", "Y", "yes", "Yes", "YES"]:
