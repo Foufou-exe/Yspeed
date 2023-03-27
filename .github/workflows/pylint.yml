@@ -1,0 +1,35 @@
+name: Pylint
+
+on:
+  push:
+    branches: [ "main", "dev"]
+  pull_request:
+    branches: [ "main", "dev" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.7","3.8", "3.9", "3.10","3.11"]
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v3
+      with:
+        python-version: ${{ matrix.python-version }}
+        cache: 'pip'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install -r requirements.txt
+        pip install pylint
+    - name: Analysing the code with pylint
+      run: |
+        note=$(pylint --score=y $(git ls-files '*.py') | grep -o -P '(?<=Your code has been rated at )\d+(\.\d+)?(?=/10)')
+        if [ $(echo "$note >= 5" | bc -l) -eq 1 ]; then
+          pylint --exit-zero $(git ls-files '*.py')
+        else
+          echo "La note de code est inférieure à 5/10. La sortie de code est générée."
+          exit 1
+        fi

@@ -1,0 +1,28 @@
+language: python
+python:
+  - "3.7"
+  - "3.8"
+  - "3.9"
+  - "3.10"
+  - "3.11"
+dist: focal
+services:
+  - xvfb
+
+
+before_install:
+  - sudo apt-get install curl -y
+  - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+  - sudo dpkg -i google-chrome-stable_current_amd64.deb
+  - sudo apt-get install -f 
+  - CHROME_VERSION=$(google-chrome --version | grep -oE "[0-9]+\.[0-9]+\.[0-9]+")
+  - CHROMEDRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION")
+  - curl -s -O "https://chromedriver.storage.googleapis.com/${CHROMEDRIVER_VERSION}/chromedriver_linux64.zip"
+  - sudo unzip chromedriver_linux64.zip -d ~/bin
+  - export PATH=$PATH:~/bin
+  - curl https://ipinfo.io/json
+cache: pip
+install:
+  - pip install -r requirements.txt
+script:
+  - python yspeed.py
