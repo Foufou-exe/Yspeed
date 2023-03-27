@@ -3,9 +3,11 @@ Test file for the yspeed.py file
 """
 import unittest
 from unittest.mock import Mock, patch, MagicMock
-from selenium.webdriver.common.by import By
 from contextlib import contextmanager
-from yspeed import Yspeed, gather_network_info, print_network_info
+import sys
+
+sys.path.append('..')
+import Yspeed
 
 @contextmanager
 def progress_context_manager():

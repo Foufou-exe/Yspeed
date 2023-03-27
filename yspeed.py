@@ -297,11 +297,14 @@ def print_network_info(console: Console, info: dict):
     console.print("Upload: [bold green]{upload}[/bold green]".format(**info), style="blue", justify="center")
     console.print("Ping: [bold green]{ping}[/bold green]".format(**info), style="blue", justify="center")
 
-def author(console: Console):
+def _version():
+    _version = "0.1.1"
+    return _version
+
+def author(console: Console,  version: _version):
     """
     This function (author) prints the author's name
     """
-    version = "0.1.0"
     console.print("Author: Foufou-exe", style="grey35", justify="center")
     console.print("Github: https://github.com/Foufou-exe", style="grey35", justify="center")
     console.print(f"Version Yspeed: {version}", style="grey35", justify="center")

@@ -1,8 +1,9 @@
 from setuptools import setup, find_packages
+from yspeed import _version
 
 setup(
-    name="Yspeed",
-    version="0.1.0",
+    name="yspeed",
+    version=_version(),
     packages=find_packages(),
     install_requires=[
         "requests",
@@ -16,6 +17,7 @@ setup(
     long_description=open("README.md", encoding="utf-8").read(),
     long_description_content_type="text/markdown",
     url="https://github.com/Foufou-exe/Yspeed",
+    py_modules=['yspeed'],
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",
