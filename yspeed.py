@@ -185,7 +185,7 @@ class Yspeed:
     
         bold_yellow = "bold yellow"
         console = Console()
-        console.print("\nSpeedTest", style=bold_yellow, justify="center")
+        console.print("\nSpeedtest", style=bold_yellow, justify="center")
         console.print("Download: [bold green]{download}[/bold green]".format(**speedtest), style="blue", justify="center")
         console.print("Upload: [bold green]{upload}[/bold green]".format(**speedtest), style="blue", justify="center")
         console.print("Ping: [bold green]{ping}[/bold green]".format(**speedtest), style="blue", justify="center")

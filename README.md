@@ -6,15 +6,21 @@
 
 </div>
 
+## Description 🌵
+
 YSpeed is a Python library that scrapes the Speedtest site using Selenium and displays the results with Rich. This library makes it easy to retrieve internet connection speed data (upload, download and latency) in an automated manner and display it elegantly using the Rich library.
 
-## Features
+<br>
+
+## Features 🎈
 
 - Speedtest.net site scraping with Selenium
 - Retrieve internet connection speed results (upload, download and latency)
 - Display results with Rich for better readability
 
-## Installation
+<br>
+
+## Installation ⚙️
 
 Make sure you have Python 3.6 or later installed. To install YSpeed, use the following command:
 
@@ -47,24 +53,51 @@ Run the Yspeed.py script
 ```cmd
 python yspeed.py
 ```
+<br>
 
-## Usage
+## Usage 🖥️
+
+##### Example 1
 
 Here is an example of how to use the YSpeed library:
 
 ```python
-from yspeed import YSpeed
+from yspeed import Yspeed
 
-ys = YSpeed()
+ys = Yspeed()
 result = ys.run_speedtest()
 ys.display_results(result)
 ```
 
-or use script yspeed.py
+<details>  
+  <summary> 🎬 Example 1</summary>
 
-```bash
-python yspeed.py
+  ![Video](.github/images/exemple.gif)
+  
+</details>
+
+<br>
+<br>
+
+##### Example 2
+
+Here are the results that will come out when you use `.run_speedtest`.
+
+```python
+from yspeed import Yspeed
+
+ys = Yspeed()
+result = ys.get_speedtest()
+print(result)
 ```
+<details>  
+  <summary> 🔍 Example 1</summary>
+
+  ![Video](.github/images/exemple3.png)
+  
+</details>
+
+<br>
 
 ## Dependencies
 
@@ -79,13 +112,10 @@ Make sure you also have a Selenium-compatible driver installed for your preferre
 ## Use screen
 
 
-
 <details>  
   <summary> 🎬 Yspeed </summary>
-  <hr>
-  <video width="1280" height="720" controls>
-    <source src="https://github.com/Foufou-exe/Yspeed/blob/2666917267f7befecf530d1f1a4ef2fa66713443/.github/images/WindowsTerminal_UnmeakEUma.mov" type="video/mp4">
-  </video>
+
+![Video](.github/images/exemple2.gif)
   
 </details>
 
