@@ -42,7 +42,7 @@ class Yspeed:
                 Ping: the latency of the connection, measured in milliseconds.
                 This method uses the 'selenium' library to interact with a web browser and automate the speed test on the Speedtest site.
                 It waits for the test to finish, extracts the results and closes the browser before returning the data.
-        _extracted_from_get_speedtest_10():
+        _extracted_from_get_speedtest():
             A private method that initializes a web browser using Selenium and loads the Speedtest site (https://www.speedtest.net/).
             This method is used by the 'ipinfo' and 'speedtest' methods to automate interactions with the web site.
         get_webdriver(browser):
@@ -59,7 +59,7 @@ class Yspeed:
         This method uses the 'requests' library to make an HTTP request and the 'selenium' library to interact with a web browser to obtain additional information,
         including the provider name and server name.
         """
-        driver = self._extracted_from_get_speedtest_10()
+        driver = self._extracted_from_get_speedtest()
         wait = WebDriverWait(driver, 5)
         wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "hostUrl")))
         wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "name")))
@@ -104,7 +104,7 @@ class Yspeed:
         This method uses the 'selenium' library to interact with a web browser and automate the speed test on the Speedtest site.
         It waits for the test to finish,extracts the results and closes the browser before returning the data.
         """
-        driver = self._extracted_from_get_speedtest_10()
+        driver = self._extracted_from_get_speedtest()
         go_button = driver.find_element(By.CSS_SELECTOR, ".start-button a")
         go_button.click()
         time.sleep(45)
@@ -146,7 +146,7 @@ class Yspeed:
             "ping": ping_speed,
         }
 
-    def _extracted_from_get_speedtest_10(self):
+    def _extracted_from_get_speedtest(self):
         """
         A private method that initializes a web browser using Selenium and loads the Speedtest site (https://www.speedtest.net/).
         """
