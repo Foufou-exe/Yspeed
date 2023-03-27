@@ -388,17 +388,17 @@ def print_network_info(console: Console, info: dict) -> None:
     )
     console.print("\nSpeedTest", style=bold_yellow, justify="center")
     console.print(
-        "Download: [bold green]{download}[/bold green]".format(**info),
+        "Download: [bold green]{download} Mbps[/bold green]".format(**info),
         style="blue",
         justify="center",
     )
     console.print(
-        "Upload: [bold green]{upload}[/bold green]".format(**info),
+        "Upload: [bold green]{upload} Mbps[/bold green]".format(**info),
         style="blue",
         justify="center",
     )
     console.print(
-        "Ping: [bold green]{ping}[/bold green]".format(**info),
+        "Ping: [bold green]{ping} ms[/bold green]".format(**info),
         style="blue",
         justify="center",
     )
