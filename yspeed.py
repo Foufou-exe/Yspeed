@@ -434,6 +434,15 @@ def clear_screen():
     else:
         print(f"Le systeme ne supporte pas : {system_name}")
 
+def question():
+    console = Console()
+    repo = input("Do you want to do a Speedtest again ? (y/n) : ")
+    if repo in ["y", "Y", "yes", "Yes", "YES"]:
+        main()
+    else:
+        clear_screen()
+        console.print("Goodbye!", style="bold red", justify="center")
+        sys.exit(0)
 
 def main():
     """
@@ -458,9 +467,7 @@ def main():
         ) as progress:
             info = gather_network_info(speedtest, progress)
         print_network_info(console, info)
-        time.sleep(10)
-        clear_screen()
-        console.print("\nGoodbye!", style="bold red", justify="center")
+        question()
     except (KeyboardInterrupt, SystemExit):
         clear_screen()
         console.print("Cancel...", style="bold red", justify="center")
