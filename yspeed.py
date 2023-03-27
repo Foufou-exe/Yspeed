@@ -65,6 +65,7 @@ class Yspeed:
     Selenium webdriver based on the browser specified in argument.
     It supports Chrome, Firefox and Edge browsers.
     """
+        
     def best_serveur(self):
         """
         Retrieves and returns detailed IP address information
@@ -96,7 +97,7 @@ class Yspeed:
         Returns:
         dict: A dictionary containing information about the user's public IP address.
         """
-        response = requests.get("http://ipinfo.io/json", timeout=5)
+        response = requests.get("https://ipinfo.io/json", timeout=5)
         data = response.json()
         ip_public = data['ip']
         city = data['city']
@@ -149,7 +150,31 @@ class Yspeed:
         accept_rpgd.click()
         return result
     
+    def run_speedtest(self):
+        """returns a dictionary containing the results of the speedtest"""
+        speedtest = self.get_speedtest()
+        return {
+            **speedtest
+        }
     
+    def display_results(self, console : Console()):
+        info = self.get_ip_info()
+        
+        console.print("Network Information", style="bold yellow", justify="center")
+        console.print("Operator: [bold green]{operator}[/bold green]".format(**info), style="blue", justify="center")
+        console.print("IP: [bold green]{ip}[/bold green]".format(**info), style="blue", justify="center")
+        console.print("\nLocalisation", style="bold yellow", justify="center")
+        console.print("City: [bold green]{city}[/bold green]".format(**info), style="blue", justify="center")
+        console.print("Region: [bold green]{region}[/bold green]".format(**info), style="blue", justify="center")
+        console.print("Country: [bold green]{country}[/bold green]".format(**info), style="blue", justify="center")
+        console.print("\nBest Server", style="bold yellow", justify="center")
+        console.print("Fournisseur: [bold green]{fournisseur}[/bold green]".format(**info), style="blue", justify="center")
+        console.print("Server: [bold green]{Serveur}[/bold green]".format(**info), style="blue", justify="center")
+        console.print("\nSpeedTest", style="bold yellow", justify="center")
+        console.print("Download: [bold green]{download}[/bold green]".format(**info), style="blue", justify="center")
+        console.print("Upload: [bold green]{upload}[/bold green]".format(**info), style="blue", justify="center")
+        console.print("Ping: [bold green]{ping}[/bold green]".format(**info), style="blue", justify="center")
+        
     def define_brower(self):
         """
         This method is used to initialize and return an instance of Selenium webdriver based on the browser specified in argument.
@@ -213,6 +238,7 @@ class Yspeed:
         result.get("https://www.speedtest.net/")
         time.sleep(5)
         return result
+    
     def get_webdriver(self, browser):
         """
         This method (get_webdriver) is used to initialize and
