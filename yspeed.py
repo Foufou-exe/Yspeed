@@ -6,6 +6,7 @@ import platform
 import sys
 import time
 
+import msvcrt
 import requests
 from halo import Halo
 from rich.console import Console
@@ -405,7 +406,7 @@ def print_network_info(console: Console, info: dict) -> None:
 
 
 def _version() -> str:
-    return "0.1.1"
+    return "0.1.2"
 
 
 def author() -> None:
@@ -441,15 +442,31 @@ def question() -> None:
     Otherwise, the screen is cleared and a goodbye message is printed in bold red text, 
     and the script exits with a status code of 0.
     """
+
     console = Console()
-    repo = input("Do you want to do a Speedtest again ? (y/n) : ")
+    print("Do you want to do a Speedtest again ? (y/n) : ", end='', flush=True)
+
+    timeout = 20  # Wait for input for 20 seconds
+    timer = 0
+
+    while timer < timeout:
+        if msvcrt.kbhit():  # Check if a key has been pressed
+            repo = sys.stdin.readline().strip()
+            break
+        timer += 0.1  # Increment timer by 0.1 seconds
+        time.sleep(0.1)  # Wait for 0.1 seconds before checking again
+
+    if timer >= timeout:
+        print("Time's up! Exiting program...")
+        sys.exit(0)
+
     if repo in ["y", "Y", "yes", "Yes", "YES"]:
         main()
     else:
         clear_screen()
-        console.print("Goodbye!", style="bold red", justify="center")
+        print("Goodbye!")
         sys.exit(0)
-
+        
 def main() -> None:
     """
     This function (main) is the main entry point of the script.
