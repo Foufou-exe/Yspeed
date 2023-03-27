@@ -6,6 +6,7 @@ from unittest.mock import Mock, patch, MagicMock
 from contextlib import contextmanager
 import sys
 
+sys.path.append("Yspeed")
 from yspeed import Yspeed, gather_network_info, print_network_info
 
 
