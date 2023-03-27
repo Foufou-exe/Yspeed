@@ -377,7 +377,7 @@ def main():
         with Progress(TextColumn("{task.fields[title]}"),BarColumn(),TimeElapsedColumnWithLabel(),console=console) as progress:
             info = gather_network_info(speedtest, progress)
         print_network_info(console, info)
-        time.sleep(30)
+        time.sleep(10)
         clear_screen()
         console.print("\nGoodbye!", style="bold red", justify="center")
     except KeyboardInterrupt:
