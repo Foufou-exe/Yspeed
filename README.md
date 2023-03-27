@@ -1,5 +1,7 @@
 # YSpeed
 
+
+
 YSpeed is a Python library that scrapes the Speedtest site using Selenium and displays the results with Rich. This library makes it easy to retrieve internet connection speed data (upload, download and latency) in an automated manner and display it elegantly using the Rich library.
 
 ## Features
