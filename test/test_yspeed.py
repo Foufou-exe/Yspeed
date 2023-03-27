@@ -7,7 +7,7 @@ from contextlib import contextmanager
 import sys
 
 sys.path.append("..")
-import Yspeed
+from yspeed import Yspeed
 
 
 @contextmanager
@@ -58,7 +58,7 @@ class TestYourClass(unittest.TestCase):
         """
         Setup the test class
         """
-        self.yspeed = Yspeed()
+        self.yspeed = yspeed()
 
     def test_get_ip_info(self):
         """
@@ -91,7 +91,7 @@ class TestYourClass(unittest.TestCase):
         speedtest_mock.get_speedtest.return_value = {"download": "100 Mbps"}
 
         with progress_context_manager() as progress_mock:
-            result = gather_network_info(speedtest_mock, progress_mock)
+            result = yspeed.gather_network_info(speedtest_mock, progress_mock)
 
         self.assertIn("ip", result)
         self.assertIn("Serveur", result)
@@ -117,7 +117,7 @@ class TestYourClass(unittest.TestCase):
             "ping": "10 ms",
         }
 
-        print_network_info(console_mock, info)
+        yspeed.print_network_info(console_mock, info)
 
         console_mock.print.assert_any_call(
             "Operator: [bold green]Test Operator[/bold green]",
