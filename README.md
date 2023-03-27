@@ -72,7 +72,7 @@ ys.display_results(result)
 <details>  
   <summary> 🎬 Example 1</summary>
 
-  ![Video](.github/images/exemple.gif)
+  ![Video](https://raw.githubusercontent.com/Foufou-exe/Yspeed/dev/.github/images/exemple.gif)
   
 </details>
 
@@ -93,7 +93,7 @@ print(result)
 <details>  
   <summary> 🔍 Example 1</summary>
 
-  ![Video](.github/images/exemple3.png)
+  ![Video](https://raw.githubusercontent.com/Foufou-exe/Yspeed/dev/.github/images/exemple3.png)
   
 </details>
 
@@ -115,7 +115,7 @@ Make sure you also have a Selenium-compatible driver installed for your preferre
 <details>  
   <summary> 🎬 Yspeed </summary>
 
-![Video](.github/images/exemple2.gif)
+![Video](https://raw.githubusercontent.com/Foufou-exe/Yspeed/dev/.github/images/exemple2.gif)
   
 </details>
 
