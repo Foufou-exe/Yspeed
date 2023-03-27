@@ -159,18 +159,18 @@ class Yspeed:
     
     def display_results(self, console : Console()):
         info = self.get_ip_info()
-        
-        console.print("Network Information", style="bold yellow", justify="center")
+        bold_yellow = "bold yellow"
+        console.print("Network Information", style=bold_yellow, justify="center")
         console.print("Operator: [bold green]{operator}[/bold green]".format(**info), style="blue", justify="center")
         console.print("IP: [bold green]{ip}[/bold green]".format(**info), style="blue", justify="center")
-        console.print("\nLocalisation", style="bold yellow", justify="center")
+        console.print("\nLocalisation", style=bold_yellow, justify="center")
         console.print("City: [bold green]{city}[/bold green]".format(**info), style="blue", justify="center")
         console.print("Region: [bold green]{region}[/bold green]".format(**info), style="blue", justify="center")
         console.print("Country: [bold green]{country}[/bold green]".format(**info), style="blue", justify="center")
-        console.print("\nBest Server", style="bold yellow", justify="center")
+        console.print("\nBest Server", style=bold_yellow, justify="center")
         console.print("Fournisseur: [bold green]{fournisseur}[/bold green]".format(**info), style="blue", justify="center")
         console.print("Server: [bold green]{Serveur}[/bold green]".format(**info), style="blue", justify="center")
-        console.print("\nSpeedTest", style="bold yellow", justify="center")
+        console.print("\nSpeedTest", style=bold_yellow, justify="center")
         console.print("Download: [bold green]{download}[/bold green]".format(**info), style="blue", justify="center")
         console.print("Upload: [bold green]{upload}[/bold green]".format(**info), style="blue", justify="center")
         console.print("Ping: [bold green]{ping}[/bold green]".format(**info), style="blue", justify="center")
@@ -305,17 +305,18 @@ def print_network_info(console: Console, info: dict):
     This function (print_network_info) prints the network information
     """
     clear_screen()
-    console.print("Network Information", style="bold yellow", justify="center")
+    bold_yellow = "bold yellow"
+    console.print("Network Information", style=bold_yellow, justify="center")
     console.print("Operator: [bold green]{operator}[/bold green]".format(**info), style="blue", justify="center")
     console.print("IP: [bold green]{ip}[/bold green]".format(**info), style="blue", justify="center")
-    console.print("\nLocalisation", style="bold yellow", justify="center")
+    console.print("\nLocalisation", style=bold_yellow, justify="center")
     console.print("City: [bold green]{city}[/bold green]".format(**info), style="blue", justify="center")
     console.print("Region: [bold green]{region}[/bold green]".format(**info), style="blue", justify="center")
     console.print("Country: [bold green]{country}[/bold green]".format(**info), style="blue", justify="center")
-    console.print("\nBest Server", style="bold yellow", justify="center")
+    console.print("\nBest Server", style=bold_yellow, justify="center")
     console.print("Fournisseur: [bold green]{fournisseur}[/bold green]".format(**info), style="blue", justify="center")
     console.print("Server: [bold green]{Serveur}[/bold green]".format(**info), style="blue", justify="center")
-    console.print("\nSpeedTest", style="bold yellow", justify="center")
+    console.print("\nSpeedTest", style=bold_yellow, justify="center")
     console.print("Download: [bold green]{download}[/bold green]".format(**info), style="blue", justify="center")
     console.print("Upload: [bold green]{upload}[/bold green]".format(**info), style="blue", justify="center")
     console.print("Ping: [bold green]{ping}[/bold green]".format(**info), style="blue", justify="center")
