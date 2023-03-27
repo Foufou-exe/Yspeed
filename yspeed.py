@@ -150,7 +150,7 @@ class Yspeed:
         """
         A private method that initializes a web browser using Selenium and loads the Speedtest site (https://www.speedtest.net/).
         """
-        result = self._extracted_from_speedtest_10()
+        result = self._extracted_from_speedtest()
         try:
             rgpd = result.find_element(By.ID, "onetrust-accept-btn-handler")
             rgpd.click()
@@ -262,9 +262,9 @@ class Yspeed:
 
         return None
 
-    def _extracted_from_speedtest_10(self):
+    def _extracted_from_speedtest(self):
         """
-        This private method (_extracted_from_speedtest_10) initializes a web browser using Selenium and loads the Speedtest site(https://www.speedtest.net/).
+        This private method (_extracted_from_speedtest) initializes a web browser using Selenium and loads the Speedtest site(https://www.speedtest.net/).
         This method is used by the 'ipinfo' and 'speedtest' methods to automate interactions with the web site.
         The main steps of this method are as follows:
             Retrieve the browser name from the command line arguments,if available, otherwise use Chrome by default.
