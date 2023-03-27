@@ -64,12 +64,12 @@ class Yspeed:
         wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "hostUrl")))
         wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "name")))
 
-        fournisseur = driver.find_element(By.CLASS_NAME, "hostUrl").text
+        provider = driver.find_element(By.CLASS_NAME, "hostUrl").text
         server = driver.find_element(By.CLASS_NAME, "name").text
 
         driver.quit()
 
-        return {"fournisseur": fournisseur, "Serveur": server}
+        return {"provider": provider, "Serveur": server}
 
     def get_ip_info(self):
         """
@@ -377,7 +377,7 @@ def print_network_info(console: Console, info: dict):
     )
     console.print("\nBest Server", style=bold_yellow, justify="center")
     console.print(
-        "Fournisseur: [bold green]{fournisseur}[/bold green]".format(**info),
+        "Fournisseur: [bold green]{provider}[/bold green]".format(**info),
         style="blue",
         justify="center",
     )
