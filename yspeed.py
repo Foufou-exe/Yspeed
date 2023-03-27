@@ -167,7 +167,7 @@ class Yspeed:
         try:
             with Halo(
                 spinner={"interval": 100, "frames": spinner_frames},
-                text="Démarrage du Speedtest",
+                text="Starting the Speedtest",
                 color="red",
                 text_color="yellow",
             ).start() as spinner:
@@ -176,12 +176,12 @@ class Yspeed:
                     spinner.text = "Progression..."
                     speedtest = self.get_speedtest()
                     spinner.stop_and_persist(
-                        text="Speedtest terminé", symbol="✅".encode("utf-8")
+                        text="Speedtest completed", symbol="✅".encode("utf-8")
                     )
                     return speedtest
         except (KeyboardInterrupt, SystemExit):
             spinner.stop_and_persist(
-                text="Speedtest annulé", symbol="❌".encode("utf-8")
+                text="Speedtest cancelled", symbol="❌".encode("utf-8")
             )
             return {
                 "download": "N/A",
@@ -306,7 +306,7 @@ class Yspeed:
             options.add_argument("--headless")
             options.add_argument("--log-level=3")
             return webdriver.Edge(options=options)
-        raise ValueError("Browser not supported")
+        raise ValueError("Browser not supported.")
 
 
 class TimeElapsedColumnWithLabel(TimeElapsedColumn):
@@ -377,7 +377,7 @@ def print_network_info(console: Console, info: dict) -> None:
     )
     console.print("\nBest Server", style=bold_yellow, justify="center")
     console.print(
-        "Fournisseur: [bold green]{provider}[/bold green]".format(**info),
+        "Provider: [bold green]{provider}[/bold green]".format(**info),
         style="blue",
         justify="center",
     )
@@ -432,7 +432,7 @@ def clear_screen() -> None:
         # do something specific for Linux
         os.system("clear")
     else:
-        print(f"Le systeme ne supporte pas : {system_name}")
+        print(f"Unable to clear the terminal because your system is not supported by the program. ({system_name})")
 
 def question() -> None:
     """
