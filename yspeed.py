@@ -13,7 +13,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
+from selenium.common.exceptions import TimeoutException
 
 class Yspeed:
     """
@@ -146,10 +146,14 @@ class Yspeed:
         A private method that initializes a web browser using Selenium and loads the Speedtest site (https://www.speedtest.net/).
         """
         result = self._extracted_from_speedtest_10()
-        accept_rpgd = result.find_element(By.ID,'onetrust-accept-btn-handler')
-        accept_rpgd.click()
-        return result
-    
+        try:
+            accept_rpgd = WebDriverWait(result, 5).until(
+                EC.presence_of_element_located((By.ID, 'onetrust-accept-btn-handler')
+            ))
+            accept_rpgd.click()
+        except TimeoutException:
+            return result
+            
     def run_speedtest(self):
         """returns a dictionary containing the results of the speedtest"""
         speedtest = self.get_speedtest()

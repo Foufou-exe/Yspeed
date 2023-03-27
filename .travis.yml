@@ -20,7 +20,6 @@ before_install:
   - curl -s -O "https://chromedriver.storage.googleapis.com/${CHROMEDRIVER_VERSION}/chromedriver_linux64.zip"
   - sudo unzip chromedriver_linux64.zip -d ~/bin
   - export PATH=$PATH:~/bin
-  - ip a
   - curl https://ipinfo.io/json
 cache: pip
 install:
