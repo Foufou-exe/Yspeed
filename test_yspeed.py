@@ -3,8 +3,11 @@ Test file for the yspeed.py file
 """
 import unittest
 from unittest.mock import Mock, patch, MagicMock
-from selenium.webdriver.common.by import By
+
 from contextlib import contextmanager
+import sys
+
+sys.path.append("Yspeed")
 from yspeed import Yspeed, gather_network_info, print_network_info
 
 @contextmanager
@@ -16,11 +19,9 @@ def progress_context_manager():
     progress_mock.__enter__.return_value = progress_mock
     yield progress_mock
     progress_mock.__exit__.assert_called_once()
+
 class TestYourClass(unittest.TestCase):
-    """ 
-    Test class for the Yspeed class
-    """
-    
+
     @patch('yspeed.Halo')
     @patch('yspeed.time.sleep', MagicMock(return_value=None))
     def test_run_speedtest(self, mock_halo):
@@ -121,3 +122,4 @@ class TestYourClass(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
