@@ -10,6 +10,7 @@ setup(
         "selenium",
         "rich",
         "halo",
+        "msvcrt",
     ],
     author="Foufou-exe",
     author_email="lumina.networks34@gmail.com",
