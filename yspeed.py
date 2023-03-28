@@ -405,7 +405,7 @@ def print_network_info(console: Console, info: dict) -> None:
 
 
 def _version() -> str:
-    return "0.1.2"
+    return "0.1.3"
 
 
 def author() -> None:
