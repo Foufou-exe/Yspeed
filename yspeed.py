@@ -50,7 +50,7 @@ class Yspeed:
              It supports Chrome, Firefox and Edge browsers.
     """
 
-    def best_server(self) -> dict[str, str]:
+    def best_server(self) -> dict:
         """
         Retrieves and returns detailed IP address information using the https://www.speedtest.net/ service.
         Information retrieved includes:
@@ -71,7 +71,7 @@ class Yspeed:
 
         return {"provider": provider, "Serveur": server}
 
-    def get_ip_info(self) -> dict[str, str]:
+    def get_ip_info(self) -> dict:
         """
         Retrieves information about the user's public IP address,such as city, region, country, and operator.
         This function makes a request to the ipinfo.io service to get information about the user's public IP address.
@@ -94,7 +94,7 @@ class Yspeed:
             "operator": operator,
         }
 
-    def get_speedtest(self) -> dict[str, str]:
+    def get_speedtest(self) -> dict:
         """
         Retrieves and returns the results of an Internet connection speed test using the online service Speedtest.
         The information retrieved includes:
