@@ -1,6 +1,7 @@
 """Docstring for module Yspeed.
 """
 
+
 import os
 import platform
 import sys
@@ -153,6 +154,7 @@ class Yspeed:
         result = self._extracted_from_speedtest()
         try:
             rgpd = result.find_element(By.ID, "onetrust-accept-btn-handler")
+
             rgpd.click()
             return result
         except NoSuchElementException:
@@ -217,7 +219,6 @@ class Yspeed:
         Initialize and return an instance of Selenium webdriver based on the browser specified in argument.
         """
         system = platform.system().lower()
-
         if system == "windows":
             browser_executables = {
                 "chrome": "chrome.exe",
@@ -340,10 +341,6 @@ def gather_network_info(speedtest: Yspeed, progress: Progress) -> dict:
             **best,
             **speed,
         }
-
-
-def print_network_info(console: Console, info: dict) -> None:
-    """
     This function (print_network_info) prints the network information
     """
     clear_screen()
@@ -427,6 +424,7 @@ def clear_screen() -> None:
     system_name = platform.system()
     if system_name == "Windows":
         # do something specific for Windows
+
         os.system("cls")
     elif system_name == "Linux":
         # do something specific for Linux
@@ -463,6 +461,7 @@ def main() -> None:
         console.print("Cancel...", style="bold red", justify="center")
         console.print("Goodbye!", style="bold red", justify="center")
         sys.exit(0)
+
 
 
 if __name__ == "__main__":
