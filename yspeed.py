@@ -6,7 +6,6 @@ import platform
 import sys
 import time
 
-import msvcrt
 import requests
 from halo import Halo
 from rich.console import Console
@@ -435,38 +434,7 @@ def clear_screen() -> None:
     else:
         print(f"Unable to clear the terminal because your system is not supported by the program. ({system_name})")
 
-def question() -> None:
-    """
-    Asks the user if they want to run a Speedtest again.
-    If the user enters "y" or "yes" (case-insensitive), the `main()` function is called to run a Speedtest. 
-    Otherwise, the screen is cleared and a goodbye message is printed in bold red text, 
-    and the script exits with a status code of 0.
-    """
-
-    console = Console()
-    print("Do you want to do a Speedtest again ? (y/n) : ", end='', flush=True)
-
-    timeout = 20  # Wait for input for 20 seconds
-    timer = 0
-
-    while timer < timeout:
-        if msvcrt.kbhit():  # Check if a key has been pressed
-            repo = sys.stdin.readline().strip()
-            break
-        timer += 0.1  # Increment timer by 0.1 seconds
-        time.sleep(0.1)  # Wait for 0.1 seconds before checking again
-
-    if timer >= timeout:
-        print("Time's up! Exiting program...")
-        sys.exit(0)
-
-    if repo in ["y", "Y", "yes", "Yes", "YES"]:
-        main()
-    else:
-        clear_screen()
-        print("Goodbye!")
-        sys.exit(0)
-        
+    
 def main() -> None:
     """
     This function (main) is the main entry point of the script.
@@ -490,7 +458,6 @@ def main() -> None:
         ) as progress:
             info = gather_network_info(speedtest, progress)
         print_network_info(console, info)
-        question()
     except (KeyboardInterrupt, SystemExit):
         clear_screen()
         console.print("Cancel...", style="bold red", justify="center")

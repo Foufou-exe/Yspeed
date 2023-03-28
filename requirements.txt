@@ -2,4 +2,3 @@ requests
 selenium
 rich
 halo
-msvcrt
