@@ -1,7 +1,6 @@
 """Docstring for module Yspeed.
 """
 
-
 import os
 import platform
 import sys
@@ -155,6 +154,7 @@ class Yspeed:
         try:
             rgpd = result.find_element(By.ID, "onetrust-accept-btn-handler")
 
+
             rgpd.click()
             return result
         except NoSuchElementException:
@@ -219,6 +219,9 @@ class Yspeed:
         Initialize and return an instance of Selenium webdriver based on the browser specified in argument.
         """
         system = platform.system().lower()
+
+
+
         if system == "windows":
             browser_executables = {
                 "chrome": "chrome.exe",
@@ -341,6 +344,11 @@ def gather_network_info(speedtest: Yspeed, progress: Progress) -> dict:
             **best,
             **speed,
         }
+
+
+
+def print_network_info(console: Console, info: dict) -> None:
+    """
     This function (print_network_info) prints the network information
     """
     clear_screen()
@@ -405,6 +413,8 @@ def _version() -> str:
     return "0.1.4"
 
 
+
+
 def author() -> None:
     """
     Prints the name of the script author and their contact information.
@@ -415,6 +425,8 @@ def author() -> None:
         "Github: https://github.com/Foufou-exe", style="grey35", justify="center"
     )
     console.print(f"Version Yspeed: {_version()}", style="grey35", justify="center")
+
+
 
 
 def clear_screen() -> None:
