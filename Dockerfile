@@ -20,6 +20,4 @@ RUN pip3 install -r /Yspeed/requirements.txt
 # Expose the port
 EXPOSE 22
 
-# Run the app
-CMD ["python3", "/Yspeed/Yspeed.py"]
 
