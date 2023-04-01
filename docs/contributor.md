@@ -19,7 +19,7 @@ With our sincere thanks and deep respect
 
 __By mister Foufou-exe__
 
-## Contributeurs principaux
+## Main contributors
 
 
 [__Ahmosys__](https://github.com/Ahmosys)
