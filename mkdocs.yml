@@ -65,19 +65,19 @@ extra:
       - accept
       - reject
 
-  alternate:
-    - name: Deutsch
-      link: /de/
-      lang: de
-    - name: French
-      link: /fr/
-      lang: fr
-    - name: Italien
-      link: /it/
-      lang: it 
-    - name: Spanish
-      link: /es/
-      lang: es
+  # alternate:
+  #   - name: Deutsch
+  #     link: /de/
+  #     lang: de
+  #   - name: French
+  #     link: /fr/
+  #     lang: fr
+  #   - name: Italien
+  #     link: /it/
+  #     lang: it 
+  #   - name: Spanish
+  #     link: /es/
+  #     lang: es
 
 markdown_extensions:
   - pymdownx.highlight:
