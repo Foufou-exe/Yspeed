@@ -130,7 +130,3 @@ dmypy.json
 .pyre/
 
 .dccache
-
-mkdocs.yml
-
-docs/
