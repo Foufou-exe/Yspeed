@@ -1,9 +1,8 @@
-![logo](https://socialify.git.ci/Foufou-exe/Yspeed/image?description=1&descriptionEditable=Yspeed%20is%20a%20library%20that%20scrapes%20the%20Speedtest%20site&font=Jost&forks=1&issues=1&logo=https%3A%2F%2Fraw.githubusercontent.com%2FFoufou-exe%2FYspeed%2Fdev%2F.github%2Fimages%2Foffice.svg&name=1&owner=1&pulls=1&stargazers=1&theme=Dark)
-
+<img src="https://socialify.git.ci/Foufou-exe/Yspeed/image?description=1&font=Jost&forks=1&issues=1&logo=https%3A%2F%2Fraw.githubusercontent.com%2FFoufou-exe%2FYspeed%2Fdev%2F.github%2Fimages%2Foffice.svg&name=1&owner=1&pattern=Solid&pulls=1&stargazers=1&theme=Dark" alt="Yspeed" />
 
 <div align="center">
 
-[![Build Status](https://app.travis-ci.com/Foufou-exe/Yspeed.svg?branch=main)](https://app.travis-ci.com/Foufou-exe/Yspeed)
+[![Python Version](https://img.shields.io/pypi/pyversions/yspeed)](https://github.com/Foufou-exe/Yspeed/releases)  [![Pypi](https://img.shields.io/pypi/v/yspeed)](https://pypi.org/project/yspeed) [![Build Status](https://app.travis-ci.com/Foufou-exe/Yspeed.svg?branch=main)](https://app.travis-ci.com/Foufou-exe/Yspeed) [![Python](https://img.shields.io/pypi/dm/Yspeed?label=Pypi%20Dowload&logo=Pypi)](https://pypi.org/project/yspeed) [![Python](https://img.shields.io/github/license/Foufou-exe/Yspeed)](https://github.com/Foufou-exe/Yspeed/blob/main/LICENSE) [![Python](https://img.shields.io/github/contributors/Foufou-exe/Yspeed?color=green)](https://github.com/Foufou-exe/Yspeed/graphs/contributors)
 
 </div>
 
