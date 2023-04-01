@@ -116,7 +116,7 @@ YSpeed depends on the following libraries:
 
 Make sure you also have a Selenium-compatible driver installed for your preferred browser (Chrome, Firefox, etc.).
 
-## Use screen
+## Use  CLI
 
 
 <details>  
