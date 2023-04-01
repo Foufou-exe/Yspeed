@@ -12,6 +12,12 @@ cd yspeed
 pip install -r requirements.txt
 ```
 
+or
+
+```pip
+pip install yspeed
+```
+
 ## Usage
 
 To use Yspeed, you can run the `yspeed.py` script using the following command:

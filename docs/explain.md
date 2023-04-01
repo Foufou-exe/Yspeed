@@ -2,7 +2,7 @@
 
 #### Classe Yspeed
 
-Le constructeur de la classe Yspeed initialise les variables nécessaires pour effectuer un test de vitesse, y compris le navigateur Web, la barre de progression et les options de navigateur.
+The constructor of the Yspeed class initializes the variables needed to perform a speed test, including the web browser, progress bar and browser options.
 
 ##### best_server(self) -> dict
 
@@ -20,7 +20,7 @@ driver.quit()
 return {"provider": provider, "Serveur": server}
 ```
 
-Cette méthode utilise la bibliothèque __selenium__ pour interagir avec le navigateur Web et obtenir des informations sur le meilleur serveur pour la connexion. Elle retourne un dictionnaire contenant le nom du serveur.
+This method uses the __selenium__ library to interact with the web browser and get information about the best server for the connection. It returns a dictionary containing the server name.
 
 ##### display_results(self, speedtest: dict) -> None
 
@@ -46,7 +46,7 @@ console.print(
 console.print("Thanks for Speedtest", style="bold red", justify="center")
 ```
 
-Cette méthode affiche les résultats du test de vitesse dans la console. Elle utilise la bibliothèque __rich__ pour afficher les résultats dans un format lisible.
+This method displays the results of the speed test in the console. It uses the __rich__ library to display the results in a readable format.
 
 ##### get_ip_info(self) -> dict
 
@@ -67,7 +67,7 @@ return {
 }
 ```
 
-Cette méthode utilise la bibliothèque  __requests__ pour effectuer une requête HTTP à un service en ligne et récupérer des informations sur l'adresse IP de l'utilisateur, y compris la ville, la région, le pays et l'opérateur. Elle retourne un dictionnaire contenant ces informations.
+This method uses the __requests__ library to make an HTTP request to an online service and retrieve information about the user's IP address, including city, region, country and operator. It returns a dictionary containing this information.
 
 ##### get_speedtest(self) -> dict
 
@@ -115,7 +115,7 @@ return {
 }
 ```
 
-Cette méthode utilise la bibliothèque __selenium__ pour interagir avec le navigateur Web et effectuer un test de vitesse en utilisant le service <https://www.speedtest.net/>. Elle retourne un dictionnaire contenant les résultats du test de vitesse, y compris la vitesse de téléchargement, la vitesse de téléversement et le ping.
+This method uses the __selenium__ library to interact with the web browser and perform a speed test using the <https://www.speedtest.net/> service. It returns a dictionary containing the results of the speed test, including the download speed, upload speed and ping.
 
 ##### run_speedtest(self) -> dict
 
@@ -148,7 +148,7 @@ except (KeyboardInterrupt, SystemExit):
     }
 ```
 
-Cette méthode utilise la méthode __get_speedtest()__ pour effectuer un test de vitesse et afficher une barre de progression pour indiquer l'état d'avancement du test. Elle retourne un dictionnaire contenant les résultats du test de vitesse.
+This method uses the __get_speedtest()__ method to perform a speed test and display a progress bar to indicate the progress of the test. It returns a dictionary containing the results of the speed test.
 
 ##### _extracted_from_get_speedtest(self) -> object
 
@@ -164,7 +164,7 @@ except NoSuchElementException:
     return result
 ```
 
-Cette méthode est une méthode privée qui initialise un navigateur Web en utilisant Selenium et charge le site Speedtest <https://www.speedtest.net/>.
+This method is a private method that initializes a web browser using Selenium and loads the Speedtest site <https://www.speedtest.net/>.
 
 ##### _extracted_from_speedtest(self) -> object
 
@@ -175,7 +175,7 @@ time.sleep(5)
 return result
 ```
 
-Cette méthode est une méthode privée qui utilise la bibliothèque __selenium__ pour interagir avec le navigateur Web et effectuer un test de vitesse en utilisant le service <https://www.speedtest.net/>. Elle retourne un objet __WebElement__ contenant les résultats du test de vitesse.
+This method is a private method that uses the __selenium__ library to interact with the web browser and perform a speed test using the <https://www.speedtest.net/> service. It returns a __WebElement__ object containing the results of the speed test.
 
 ### Other function
 
@@ -208,7 +208,7 @@ except (KeyboardInterrupt, SystemExit):
     sys.exit(0)
 ```
 
-Cette fonction est la fonction principale qui est appelée lorsque le script est exécuté en tant que programme autonome. Elle crée une instance de la classe __Yspeed__ et appelle la méthode __run()__ pour effectuer le test de vitesse.
+This function is the main function that is called when the script is run as a standalone program. It creates an instance of the __Yspeed__ class and calls the __run()__ method to perform the speed test.
 
 ##### gather_network_info(self, speedtest, progress_bar) -> dict
 
@@ -236,7 +236,7 @@ return {
 }
 ```
 
-Cette méthode utilise les méthodes __get_ip_info()__,__best_server()__ et __get_speedtest()__ pour récupérer des informations sur le réseau de l'utilisateur et effectuer un test de vitesse. Elle utilise également une barre de progression pour afficher l'état d'avancement du test. Elle retourne un dictionnaire contenant toutes les informations récupérées.
+This method uses the __get_ip_info()__, __best_server()__ and __get_speedtest()__ methods to retrieve information about the user's network and perform a speed test. It also uses a progress bar to display the progress of the test. It returns a dictionary containing all the information retrieved.
 
 ##### clear_screen() -> None
 
@@ -254,4 +254,4 @@ else:
 
 ```
 
-Cette méthode efface l'écran du terminal en fonction du système d'exploitation. Elle utilise la bibliothèque __os__ pour appeler la commande système appropriée pour effacer l'écran.
+This method clears the terminal screen depending on the operating system. It uses the __os__ library to call the appropriate system command to clear the screen.
