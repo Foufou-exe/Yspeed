@@ -16,7 +16,7 @@ theme:
     - search.suggest
     - search.highlight
     - content.tabs.link
-    - content.code.annotation
+    - content.code.annotate
     - content.code.copy
     - content.action.edit
     - content.action.view
